@@ -142,15 +142,15 @@
 
 // If defined, the GPU polling thread will be put to sleep for 1/TARGET_FRAMERATE seconds after receiving
 // each new GPU frame, to wait for the earliest moment that the next frame could arrive.
-#define SAVE_BATTERY_BY_SLEEPING_UNTIL_TARGET_FRAME
+//#define SAVE_BATTERY_BY_SLEEPING_UNTIL_TARGET_FRAME
 
 // Detects when the activity on the screen is mostly idle, and goes to low power mode, in which new
 // frames will be polled first at 10fps, and ultimately at only 2fps.
-#define SAVE_BATTERY_BY_SLEEPING_WHEN_IDLE
+//#define SAVE_BATTERY_BY_SLEEPING_WHEN_IDLE
 
 // Builds a histogram of observed frame intervals and uses that to sync to a known update rate. This aims
 // to detect if an application uses a non-60Hz update rate, and synchronizes to that instead.
-#define SAVE_BATTERY_BY_PREDICTING_FRAME_ARRIVAL_TIMES
+//#define SAVE_BATTERY_BY_PREDICTING_FRAME_ARRIVAL_TIMES
 
 // If defined, rotates the display 180 degrees. This might not rotate the panel scan order though,
 // so adding this can cause up to one vsync worth of extra display latency. It is best to avoid this and
@@ -225,7 +225,7 @@
 // If less than this much % of the screen changes per frame, the screen is considered to be inactive, and
 // the display backlight can automatically turn off, if TURN_DISPLAY_OFF_AFTER_USECS_OF_INACTIVITY is 
 // defined.
-#define DISPLAY_CONSIDERED_INACTIVE_PERCENTAGE (5.0 / 100.0)
+//#define DISPLAY_CONSIDERED_INACTIVE_PERCENTAGE (5.0 / 100.0)
 
 #ifndef KERNEL_MODULE
 
