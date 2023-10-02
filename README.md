@@ -48,7 +48,7 @@ sudo apt update
 sudo apt install cmake
 cd ~
 git clone https://github.com/jokubasver/Anycubic-Kobra-Go-Neo-LCD-Driver.git
-cd fbcp-ili9341
+cd Anycubic-Kobra-Go-Neo-LCD-Driver
 mkdir build
 cd build
 cmake -DST7796=ON -DGPIO_TFT_DATA_CONTROL=24 -DGPIO_TFT_RESET_PIN=25 -DSPI_BUS_CLOCK_DIVISOR=8 -DSTATISTICS=0 ..
@@ -64,9 +64,9 @@ Now we need to make sure the driver starts at startup.
 Edit the file `/etc/rc.local` by typing `sudo nano /etc/rc.local`, and add a line:
 
 ```bash
-sudo /path/to/fbcp-ili9341/build/fbcp-ili9341 &
+sudo /path/to/Anycubic-Kobra-Go-Neo-LCD-Driver/build/fbcp-ili9341 &
 ````
-Make sure to change the path - for example, if your username is the default `pi`, then it should be: `sudo /home/pi/fbcp-ili9341/build/fbcp-ili9341 &`
+Make sure to change the path - for example, if your username is the default `pi`, then it should be: `sudo /home/pi/Anycubic-Kobra-Go-Neo-LCD-Driver/build/fbcp-ili9341 &`
 
 Press CTRL+X, then Y to save, reboot by typing `sudo reboot now` and you should see the terminal after the Pi finishes booting.
 
