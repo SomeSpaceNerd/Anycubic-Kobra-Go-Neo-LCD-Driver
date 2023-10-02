@@ -2,7 +2,7 @@
 
 Running Klipper on your Anycubic Kobra Go or Neo? Make the stock LCD shine again with this custom LCD driver and KlipperScreen!
 
-[Kobra Neo LCD KlipperScreen](/kobra-neo-lcd-1.jpg "Kobra Neo LCD KlipperScreen")
+![Kobra Neo LCD KlipperScreen](/kobra-neo-lcd-1.jpg "Kobra Neo LCD KlipperScreen")
 
 This is a fork of the excellent [fbcp-ili9341](https://github.com/juj/fbcp-ili9341) project, with a driver for the ST7796 SPI TFT display used in the Anycubic Kobra Go and Neo. 
 
