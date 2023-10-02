@@ -17,6 +17,8 @@
 #include "hx8357d.h"
 #elif defined(ST7735R) || defined(ST7735S) || defined(ST7789) || defined(ST7789VW)
 #include "st7735r.h"
+#elif defined(ST7796)
+#include "st7796.h"
 #elif defined(SSD1351)
 #include "ssd1351.h"
 #elif defined(MZ61581)
