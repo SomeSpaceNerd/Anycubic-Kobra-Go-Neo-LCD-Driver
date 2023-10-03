@@ -13,7 +13,40 @@ Since the LCD used in the Kobra Go/Neo does not have touch, you can only use the
 Tested on a Raspberry Pi Zero 2W, but it should work on other Pi models, as long as they are supported by [fbcp-ili9341](https://github.com/juj/fbcp-ili9341)
 
 ### Hardware Setup
-TODO
+The LCD used in the Kobra Go/Neo uses an SPI interface, so we can directly connect it to the Raspberry Pi GPIO pins. All you need is some jumper wires.
+
+The pinout is defined on the mainboard of the printer:
+
+![Kobra-Go-Neo-Mainboard-LCD-Pinout-Silkscreen](https://github.com/jokubasver/Anycubic-Kobra-Go-Neo-LCD-Driver/assets/4341386/44d7e98c-0af0-4ce9-a5a3-752801bc9de5)
+
+***However, the pinout on the silkscreen of the mainboard is not correct!*** This caused many headaches while building this project.
+
+This is the correct pinout:
+
+<img width="298" alt="Kobra-Go-Neo-LCD-2x5-IDC-Correct-Pinout-Mainboard-Side" src="https://github.com/jokubasver/Anycubic-Kobra-Go-Neo-LCD-Driver/assets/4341386/ae213679-0ccf-46e9-9dc2-2075c794b3d4">
+
+Since KlipperScreen only accepts touch input, we can ignore the rotary encoder pins.
+
+And so the wiring from the LCD to the Raspberry Pi GPIO is:
+```
+5V -> 5V
+GND -> GND
+SCK -> GPIO 11 (SPI SCLK)
+MOSI -> GPIO 10 (SPI MOSI)
+CS -> GPIO 8 (SPI CE0)
+RESET -> GPIO 25
+DC (Marked as MISO on the mainboard) -> GPIO 24
+```
+
+Now you need to decided where you will connect the jumpers wires to. 
+ - You can remove the stock LCD cable entirely, and insert jumper wires directly to the connector of the LCD display.
+ - Or, like I did, unplug the LCD cable from the mainboard of the printer, and insert jumper wires into the cable's connector:
+
+![Kobra-Go-Neo-LCD-GPIO-To-LCD-Cable-2](https://github.com/jokubasver/Anycubic-Kobra-Go-Neo-LCD-Driver/assets/4341386/9e8cf3c4-8cdf-4fbc-bc14-174b968d43f0)
+
+<img width="600" alt="Kobra-Go-Neo-LCD-GPIO-To-LCD-Cable" src="https://github.com/jokubasver/Anycubic-Kobra-Go-Neo-LCD-Driver/assets/4341386/77d8b5fd-2f6c-4b01-a3ee-9ab0b960040e">
+
+With the hardware setup done, now you can proceed with the software installation.
 
 ### config.txt Setup
 Before we start, we need to setup config.txt
@@ -60,7 +93,7 @@ Now we can test if the driver and display works:
 ```bash
 sudo ./fbcp-ili9341
 ```
-If you see the terminal, congrats! You can move to the next step. If you get a white screen - check your wiring. If it still doesn't work, try changing 
+If you see the terminal, congrats! You can move to the next step. If you get a white screen - check your wiring. If it still doesn't work, try uncommenting `dtoverlay=vc4-kms-v4d` in `/boot/config.txt` or change it to `dtoverlay=vc4-fkms-v4d`.
 
 Now we need to make sure the driver starts at startup.
 Edit the file `/etc/rc.local` by typing `sudo nano /etc/rc.local`, and add a line:
@@ -95,4 +128,12 @@ Change `Driver          "fbturbo"` to `Driver          "fbdev"`, press CTRL+X, t
 
 At this point you should see KlipperScreen on the LCD display.
 
-You are done!
+**You are done!**
+
+If you want to add a printer name and disable screen timeout, using your Klipper web interface (Mainsail/Fluidd) create a `KlipperScreen.conf` file in the config folder and add:
+```bash
+[main]
+job_complete_timeout: 0
+
+[printer Anycubic Kobra Neo]
+```
