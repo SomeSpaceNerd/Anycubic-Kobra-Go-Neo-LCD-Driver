@@ -70,7 +70,9 @@ If your `/boot/config.txt` file has lines that look something like `dtoverlay=pi
 
 The driver neither utilizes the default SPI driver, so a line such as `dtparam=spi=on` in `/boot/config.txt` should also be removed so that it will not cause conflicts.
 
-Press CTRL+X, then Y to save
+Press CTRL+X, then Y to save.
+
+To prevent the display going to sleep, type `sudo raspi-config`, navigate to `Display Options`, select `Screen Blanking` and press `No` to disable Screen Blanking. Now go back, save and reboot.
 
 
 ### Driver installation
