@@ -208,7 +208,7 @@
 #define KEYBOARD_INPUT_FILE "/dev/input/event1"
 
 // If enabled, the display backlight will be turned off after this many usecs of no activity on screen.
-#define TURN_DISPLAY_OFF_AFTER_USECS_OF_INACTIVITY (1 * 60 * 1000000)
+//#define TURN_DISPLAY_OFF_AFTER_USECS_OF_INACTIVITY (1 * 60 * 1000000)
 
 #endif
 
