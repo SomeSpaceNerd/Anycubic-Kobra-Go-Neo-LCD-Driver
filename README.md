@@ -136,6 +136,8 @@ If you want to add a printer name and disable screen timeout, using your Klipper
 ```bash
 [main]
 job_complete_timeout: 0
+screen_blanking = off
+use_dpms = False
 
 [printer Anycubic Kobra Neo]
 ```
