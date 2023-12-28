@@ -33,7 +33,7 @@
 // output new frames at this vsync-detached interval, so there's a 50 Hz vs 60 Hz mismatch that results
 // in visible microstuttering. Still, providing this as an option, this might be good for content that
 // is known to run at native 60Hz.
-// #define USE_GPU_VSYNC
+#define USE_GPU_VSYNC
 
 // Always enable GPU VSync on the Pi Zero. Even though it is suboptimal and can cause stuttering, it saves battery.
 #if defined(SINGLE_CORE_BOARD)
@@ -50,7 +50,7 @@
 
 // If USE_GPU_VSYNC is defined, then enabling this causes new frames to be snapshot more often than at
 // TARGET_FRAME_RATE interval to try to keep up smoother 60fps instead of stuttering. Consumes more CPU.
-#define SELF_SYNCHRONIZE_TO_GPU_VSYNC_PRODUCED_NEW_FRAMES
+//#define SELF_SYNCHRONIZE_TO_GPU_VSYNC_PRODUCED_NEW_FRAMES
 
 #endif
 
@@ -64,7 +64,7 @@
 
 // If defined, progressive updating is always used (at the expense of slowing down refresh rate if it's
 // too much for the display to handle)
-// #define NO_INTERLACING
+#define NO_INTERLACING
 
 #if (defined(FREEPLAYTECH_WAVESHARE32B) || (defined(ILI9341) && SPI_BUS_CLOCK_DIVISOR <= 4)) && defined(USE_DMA_TRANSFERS) && !defined(NO_INTERLACING)
 // The Freeplaytech CM3/Zero displays actually only have a visible display resolution of 302x202, instead of
@@ -91,7 +91,7 @@
 
 // If defined, DMA usage is foremost used to save power consumption and CPU usage. If not defined,
 // DMA usage is tailored towards maximum performance.
-// #define ALL_TASKS_SHOULD_DMA
+#define ALL_TASKS_SHOULD_DMA
 
 // If defined, screen updates are performed in strictly one update rectangle per frame.
 // This reduces CPU consumption at the expense of sending more pixels. You can try enabling this
@@ -99,7 +99,7 @@
 // Useful on Pi Zero W and ILI9341 to conserve CPU power. If this is not defined, the default much
 // more powerful diffing algorithm is used, which sends far fewer pixels each frame, (but that diffing
 // costs more CPU time). Enabling this requires that ALL_TASKS_SHOULD_DMA is also enabled.
-// #define UPDATE_FRAMES_IN_SINGLE_RECTANGULAR_DIFF
+#define UPDATE_FRAMES_IN_SINGLE_RECTANGULAR_DIFF
 
 // If UPDATE_FRAMES_IN_SINGLE_RECTANGULAR_DIFF is used, controls whether the generated tasks are aligned for
 // ARMv6 cache lines. This is good to be enabled for ARMv6 Pis, doesn't make much difference on ARMv7 and ARMv8 Pis.
@@ -108,7 +108,7 @@
 // If defined, screen updates are performend without performing diffing at all, i.e. by doing
 // full updates. This is very lightweight on CPU, but excessive on the SPI bus. Enabling this
 // requires that ALL_TASKS_SHOULD_DMA is also enabled.
-// #define UPDATE_FRAMES_WITHOUT_DIFFING
+#define UPDATE_FRAMES_WITHOUT_DIFFING
 
 #if defined(SINGLE_CORE_BOARD) && defined(USE_DMA_TRANSFERS) && !defined(SPI_3WIRE_PROTOCOL) // TODO: 3-wire SPI displays are not yet compatible with ALL_TASKS_SHOULD_DMA option.
 // These are prerequisites for good performance on Pi Zero
@@ -192,7 +192,7 @@
 
 // If enabled, build to utilize DMA transfers to communicate with the SPI peripheral. Otherwise polling
 // writes will be performed (possibly with interrupts, if using kernel side driver module)
-// #define USE_DMA_TRANSFERS
+#define USE_DMA_TRANSFERS
 
 // If defined, enables code to manage the backlight.
 // #define BACKLIGHT_CONTROL

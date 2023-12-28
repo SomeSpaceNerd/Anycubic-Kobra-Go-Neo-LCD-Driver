@@ -62,6 +62,7 @@ hdmi_mode=87
 hdmi_cvt=320 240 60 1 0 0 0
 hdmi_force_hotplug=1
 gpu_mem=160
+avoid_warnings=2
 ```
 
 This sets the resolution to that of the LCD display. Increasing the RAM might not be needed.
@@ -88,7 +89,7 @@ git clone https://github.com/jokubasver/Anycubic-Kobra-Go-Neo-LCD-Driver.git
 cd Anycubic-Kobra-Go-Neo-LCD-Driver
 mkdir build
 cd build
-cmake -DST7796=ON -DGPIO_TFT_DATA_CONTROL=24 -DGPIO_TFT_RESET_PIN=25 -DSPI_BUS_CLOCK_DIVISOR=8 -DSTATISTICS=0 ..
+cmake -DST7796=ON -DGPIO_TFT_DATA_CONTROL=24 -DGPIO_TFT_RESET_PIN=25 -DSPI_BUS_CLOCK_DIVISOR=30 -DSTATISTICS=0 -DUSE_DMA_TRANSFERS=ON ..
 make -j
 ```
 Now we can test if the driver and display works:
